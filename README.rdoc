@@ -1,0 +1,7 @@
+= Rspec - Factory Girl
+
+Rspec matcher collection for testing your factory builded with factory girl.
+
+== Copyright
+
+Copyright (c) 2009 Yann Lugrin. See LICENSE for details.

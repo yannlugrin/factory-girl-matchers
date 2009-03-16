@@ -1,8 +1,9 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
+require 'spec'
+
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'rubygems'
-require 'spec'
 require 'activerecord'
 require 'factory_girl'
 
@@ -18,6 +19,10 @@ config = {
 
 # Establish connection to database
 ActiveRecord::Base.establish_connection(config[:database])
+
+# Rspec config
+Spec::Runner.configure do |config|
+end
 
 # Helpers to create models
 def create_table(table_name, &block)
