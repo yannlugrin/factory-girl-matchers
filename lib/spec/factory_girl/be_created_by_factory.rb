@@ -1,19 +1,13 @@
 module Spec
   module FactoryGirl
     module Matchers
-      class BeCreatedByFactory
-        def initialize(factory)
-          @factory = factory
-          @errors = []
-        end
-
+      class BeCreatedByFactory < Spec::FactoryGirl::Matchers::Base
         def description
           "create instance of '#{@target}' by factory '#{@factory}'"
         end
 
         def matches?(target)
-          @target = target_class(target)
-          @factory ||= default_factory
+          prepare_matches(target)
           
           begin
             @result = Factory.create(@factory)
@@ -21,12 +15,8 @@ module Spec
             @errors << e.to_s
             return false
           end
-
-          unless @result.kind_of?(@target)
-            @errors << "Not a kind of #{@target}"
-          end
           
-          @errors.empty?
+          super
         end
 
         def failure_message
@@ -35,16 +25,6 @@ module Spec
         
         def negative_failure_message
           "expected #{@target.inspect} not to be created by factory '#{@factory}'"
-        end
-
-        private
-
-        def default_factory
-          @target.to_s.underscore.to_sym if @target.kind_of? Class
-        end
-
-        def target_class(target)
-          target.kind_of?(Class) ? target : target.class
         end
       end
 
