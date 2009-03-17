@@ -1,2 +1,4 @@
-
-require 'spec/factory_girl' if ENV['RAILS_ENV'] == 'test'
+if ENV['RAILS_ENV'] == 'test'
+  require 'spec/rails'
+  require 'spec/factory_girl'
+end
