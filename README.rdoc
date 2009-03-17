@@ -1,7 +1,56 @@
-= Rspec - Factory Girl
+= RSpec - Factory Girl
 
-Rspec matcher collection for testing your factory builded with factory girl.
+RSpec matcher collection for testing your model builded with factory girl.
 
-== Copyright
+  describe Post do
+    it { should be_builded_by_factory } # Factory named ':post' is used
+    it { should be_created_by_factory } # Factory named ':post' is used
+
+    it { should be_builded_by_factory(:my_factory) }
+    it { should be_created_by_factory(:my_factory) }
+  endss
+
+== Install
+
+Run the following if you haven't already:
+
+  gem sources -a http://gems.github.com
+
+Install the gem:
+
+  sudo gem install yannlugrin-rspec-factory-girl
+
+== Installing via Rails
+
+Specify the gem dependency in your config/environment.rb file after 'spec/rails' dependency:
+
+  config.gem "yannlugrin-rspec-factory-girl", :lib => "rspec/factory_girl", :source => "http://gems.github.com"
+
+Then run in terminal:
+
+  $ rake gems:install
+
+=== As a Plugin
+
+You can also install Remarkable as a plugin:
+
+  $ script/plugin install git://github.com/yannlugrin/rspec-factory-girl.git
+
+Or using git submodules:
+
+  $ git submodule add git://github.com/yannlugrin/rspec-factory-girl.git vendor/plugins/rspec-factory-girl
+
+== Requirements
+
+* factory_girl >= 1.2.0
+* rspec >= 1.2.0
+* rspec-rails >= 1.2.0 (only for rails projects)
+
+== More information
+
+Github: http://www.github.com/yannlugrin/rspec-factory-girl
+Bug tracking: http://yannlugrin.lighthouseapp.com/projects/27537-rspec-factory-girl/overview
+
+== Copyright & License
 
 Copyright (c) 2009 Yann Lugrin. See LICENSE for details.
