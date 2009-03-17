@@ -43,6 +43,20 @@ describe 'Factory' do
     it { should be_created_by_factory(:another_model) }
   end
 
+  context 'with another class' do
+    before(:each) do
+      define_model(:simple_model)
+      define_model(:another_model)
+
+      Factory.define :simple_model, :class => AnotherModel do |model|
+      end
+    end
+    subject { SimpleModel }
+
+    it { should_not be_builded_by_factory(:simple_model) }
+    it { should_not be_created_by_factory(:simple_model) }
+  end
+
   context 'without attribute' do
     before(:each) do
       define_model(:simple_model)
@@ -56,14 +70,11 @@ describe 'Factory' do
     it { should be_created_by_factory(:simple_model) }
   end
 
-  context 'with all needed attribute' do
+  context 'with attribute' do
     before(:each) do
-      define_model(:simple_model, :name => :string) do
-        validates_presence_of :name
-      end
+      define_model(:simple_model, :name => :string)
 
       Factory.define :simple_model do |model|
-        model.name 'My name'
       end
     end
     subject { SimpleModel }
@@ -87,18 +98,53 @@ describe 'Factory' do
     it { should_not be_created_by_factory(:simple_model) }
   end
 
-  context 'with another class' do
+  context 'with all needed attribute' do
     before(:each) do
-      define_model(:simple_model)
-      define_model(:another_model)
-
-      Factory.define :simple_model, :class => AnotherModel do |model|
+      define_model(:simple_model, :name => :string) do
+        validates_presence_of :name
       end
+
+      Factory.define :simple_model do |model|
+        model.name 'My name'
+      end
+    end
+    subject { SimpleModel }
+
+    it { should be_builded_by_factory(:simple_model) }
+    it { should be_created_by_factory(:simple_model) }
+  end
+
+  context 'without sequence for uniqu attribute' do
+    before(:each) do
+      define_model(:simple_model, :name => :string) do
+        validates_uniqueness_of :name
+      end
+
+      Factory.define :simple_model do |model|
+      end
+      Factory.create :simple_model
     end
     subject { SimpleModel }
 
     it { should_not be_builded_by_factory(:simple_model) }
     it { should_not be_created_by_factory(:simple_model) }
+  end
+
+  context 'with sequence for uniqu attribute' do
+    before(:each) do
+      define_model(:simple_model, :name => :string) do
+        validates_uniqueness_of :name
+      end
+
+      Factory.define :simple_model do |model|
+        model.sequence(:name) {|n| "name #{n}" }
+      end
+      Factory.create :simple_model
+    end
+    subject { SimpleModel }
+
+    it { should be_builded_by_factory(:simple_model) }
+    it { should be_created_by_factory(:simple_model) }
   end
 end
 
