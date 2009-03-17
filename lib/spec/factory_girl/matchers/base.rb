@@ -12,19 +12,26 @@ module Spec
 
         def matches?(target)
           prepare_matches(target)
+          return false unless @result
 
-          unless @result
-            @errors << "Target instance is nil"
-            return false
-          end
-
+          # record is a kind of target class
           unless @result.kind_of?(@target)
-            @errors << "Not a kind of #{@target}"
+            @errors << "record isn't a kind of #{@target}"
             return false
           end
-          
+
+          # record is valid
           unless @result.valid?
             @errors += @result.errors.full_messages
+            return false
+          end
+
+          # A second record can be created
+          begin
+            @result.save!
+            Factory.create(@factory)
+          rescue ActiveRecord::RecordInvalid => e
+            @errors << "attribute have uniqu validation, use sequence in factory (#{e.to_s})"
             return false
           end
 

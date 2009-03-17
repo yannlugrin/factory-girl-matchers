@@ -122,7 +122,6 @@ describe 'Factory' do
 
       Factory.define :simple_model do |model|
       end
-      Factory.create :simple_model
     end
     subject { SimpleModel }
 
@@ -139,7 +138,6 @@ describe 'Factory' do
       Factory.define :simple_model do |model|
         model.sequence(:name) {|n| "name #{n}" }
       end
-      Factory.create :simple_model
     end
     subject { SimpleModel }
 
