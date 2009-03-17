@@ -4,7 +4,7 @@ require 'spec/factory_girl'
 describe 'Factory' do
   include Spec::FactoryGirl::Matchers
 
-  context 'with default factory name' do
+  context 'with default factory name if subject is a class' do
     before(:each) do
       define_model(:simple_model)
 
@@ -12,6 +12,19 @@ describe 'Factory' do
       end
     end
     subject { SimpleModel }
+
+    it { should be_builded_by_factory }
+    it { should be_created_by_factory }
+  end
+
+  context 'with default factory name if subject is a instance' do
+    before(:each) do
+      define_model(:simple_model)
+
+      Factory.define :simple_model do |model|
+      end
+    end
+    subject { SimpleModel.new }
 
     it { should be_builded_by_factory }
     it { should be_created_by_factory }
