@@ -1,6 +1,4 @@
-require 'spec/factory_girl/base'
-require 'spec/factory_girl/be_builded_by_factory'
-require 'spec/factory_girl/be_created_by_factory'
+require 'spec/factory_girl/matchers'
 
 module Spec
   module Rails
