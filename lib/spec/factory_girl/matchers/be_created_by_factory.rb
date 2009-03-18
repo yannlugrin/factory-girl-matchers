@@ -19,11 +19,11 @@ module Spec
           super
         end
 
-        def failure_message
+        def failure_message_for_should
           "expected #{@target.inspect} to be created by factory '#{@factory}'\n" + @errors.join("\n")
         end
         
-        def negative_failure_message
+        def failure_message_for_should_not
           "expected #{@target.inspect} not to be created by factory '#{@factory}'"
         end
       end
