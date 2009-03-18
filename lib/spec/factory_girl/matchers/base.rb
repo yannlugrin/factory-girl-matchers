@@ -16,7 +16,7 @@ module Spec
 
           # record is a kind of target class
           unless @result.kind_of?(@target)
-            @errors << "record isn't a kind of #{@target}"
+            @errors << "'#{@target}' class expected, but factory return object kind of #{@result.class}"
             return false
           end
 
@@ -26,12 +26,19 @@ module Spec
             return false
           end
 
-          # A second record can be created
+          # record can be saved
           begin
             @result.save!
+          rescue ActiveRecord::RecordInvalid => e
+            @errors << e.to_s
+            return false
+          end
+
+          # A second record can be created
+          begin
             Factory.create(@factory)
           rescue ActiveRecord::RecordInvalid => e
-            @errors << "attribute have uniqu validation, use sequence in factory (#{e.to_s})"
+            @errors << "model have uniqu validation, use sequence in factory (#{e.to_s})"
             return false
           end
 
