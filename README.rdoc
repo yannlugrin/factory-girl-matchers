@@ -46,6 +46,18 @@ Or using git submodules:
 * rspec >= 1.2.0
 * rspec-rails >= 1.2.0 (only for rails projects)
 
+== RubyGems
+
+RubyGems is not required by this library, if you have a LoadError when you run rake tasks, use
+follwing command:
+
+  RUBYOPT="rubygems" rake
+
+or export RUBYOPTS before launch rake tasks:
+
+  RUBYOPT="rubygems"
+  export RUBYOPT
+
 == More information
 
 Github: http://www.github.com/yannlugrin/rspec-factory-girl
