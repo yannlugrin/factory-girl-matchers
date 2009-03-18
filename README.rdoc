@@ -42,9 +42,10 @@ Or using git submodules:
 
 == Requirements
 
+* activerecord >= 2.3.2
 * factory_girl >= 1.2.0
 * rspec >= 1.2.0
-* rspec-rails >= 1.2.0 (only for rails projects)
+* rspec-rails >= 1.2.0
 
 == RubyGems
 
