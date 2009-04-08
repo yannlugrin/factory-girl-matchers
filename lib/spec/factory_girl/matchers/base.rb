@@ -38,7 +38,7 @@ module Spec
           begin
             Factory.create(@factory)
           rescue ActiveRecord::RecordInvalid => e
-            @errors << "model have uniqu validation, use sequence in factory (#{e.to_s})"
+            @errors << "model has uniqueness validation, use sequence in factory (#{e.to_s})"
             return false
           end
 

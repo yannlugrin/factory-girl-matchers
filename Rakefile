@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rspec-factory-girl"
-    gem.summary = %Q{Rspec matcher collection for testing your model builded with factory girl}
+    gem.summary = %Q{Rspec matcher collection for testing your model built with factory girl}
     gem.email = "yann.lugrin@sans-savoir.net"
     gem.homepage = "http://github.com/yannlugrin/rspec-factory-girl"
     gem.authors = ["Yann Lugrin"]
