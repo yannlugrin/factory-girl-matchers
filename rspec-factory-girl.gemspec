@@ -2,14 +2,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rspec-factory-girl}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yann Lugrin"]
-  s.date = %q{2009-03-18}
+  s.date = %q{2009-04-09}
   s.email = %q{yann.lugrin@sans-savoir.net}
   s.extra_rdoc_files = ["README.rdoc", "LICENSE"]
-  s.files = ["README.rdoc", "VERSION.yml", "lib/spec", "lib/spec/factory_girl", "lib/spec/factory_girl/matchers.rb", "lib/spec/factory_girl/matchers", "lib/spec/factory_girl/matchers/be_built_by_factory.rb", "lib/spec/factory_girl/matchers/base.rb", "lib/spec/factory_girl/matchers/be_created_by_factory.rb", "lib/spec/factory_girl.rb", "spec/factory_girl_spec.rb", "spec/test.sqlite3", "spec/spec.opts", "spec/spec_helper.rb", "LICENSE"]
+  s.files = ["README.rdoc", "VERSION.yml", "lib/spec", "lib/spec/factory_girl", "lib/spec/factory_girl/matchers.rb", "lib/spec/factory_girl/matchers", "lib/spec/factory_girl/matchers/base.rb", "lib/spec/factory_girl/matchers/be_built_by_factory.rb", "lib/spec/factory_girl/matchers/be_created_by_factory.rb", "lib/spec/factory_girl.rb", "spec/factory_girl_spec.rb", "spec/test.sqlite3", "spec/spec.opts", "spec/spec_helper.rb", "LICENSE"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/yannlugrin/rspec-factory-girl}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
