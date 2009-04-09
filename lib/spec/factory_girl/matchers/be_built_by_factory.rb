@@ -1,7 +1,7 @@
 module Spec
   module FactoryGirl
     module Matchers
-      class BeBuildedByFactory < Spec::FactoryGirl::Matchers::Base
+      class BeBuiltByFactory < Spec::FactoryGirl::Matchers::Base
         def description
           "build instance of '#{@target}' by factory '#{@factory}'"
         end
@@ -23,8 +23,8 @@ module Spec
         end
       end
 
-      def be_builded_by_factory(factory = nil)
-        BeBuildedByFactory.new(factory)
+      def be_built_by_factory(factory = nil)
+        BeBuiltByFactory.new(factory)
       end
     end
   end

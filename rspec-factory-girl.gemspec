@@ -9,13 +9,13 @@ Gem::Specification.new do |s|
   s.date = %q{2009-03-18}
   s.email = %q{yann.lugrin@sans-savoir.net}
   s.extra_rdoc_files = ["README.rdoc", "LICENSE"]
-  s.files = ["README.rdoc", "VERSION.yml", "lib/spec", "lib/spec/factory_girl", "lib/spec/factory_girl/matchers.rb", "lib/spec/factory_girl/matchers", "lib/spec/factory_girl/matchers/be_builded_by_factory.rb", "lib/spec/factory_girl/matchers/base.rb", "lib/spec/factory_girl/matchers/be_created_by_factory.rb", "lib/spec/factory_girl.rb", "spec/factory_girl_spec.rb", "spec/test.sqlite3", "spec/spec.opts", "spec/spec_helper.rb", "LICENSE"]
+  s.files = ["README.rdoc", "VERSION.yml", "lib/spec", "lib/spec/factory_girl", "lib/spec/factory_girl/matchers.rb", "lib/spec/factory_girl/matchers", "lib/spec/factory_girl/matchers/be_built_by_factory.rb", "lib/spec/factory_girl/matchers/base.rb", "lib/spec/factory_girl/matchers/be_created_by_factory.rb", "lib/spec/factory_girl.rb", "spec/factory_girl_spec.rb", "spec/test.sqlite3", "spec/spec.opts", "spec/spec_helper.rb", "LICENSE"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/yannlugrin/rspec-factory-girl}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.1}
-  s.summary = %q{Rspec matcher collection for testing your model builded with factory girl}
+  s.summary = %q{Rspec matcher collection for testing your model built with factory girl}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

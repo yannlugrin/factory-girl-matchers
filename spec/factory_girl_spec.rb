@@ -13,7 +13,7 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should be_builded_by_factory }
+    it { should be_built_by_factory }
     it { should be_created_by_factory }
   end
 
@@ -26,7 +26,7 @@ describe 'Factory' do
     end
     subject { SimpleModel.new }
 
-    it { should be_builded_by_factory }
+    it { should be_built_by_factory }
     it { should be_created_by_factory }
   end
 
@@ -39,7 +39,7 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should be_builded_by_factory(:another_model) }
+    it { should be_built_by_factory(:another_model) }
     it { should be_created_by_factory(:another_model) }
   end
 
@@ -53,7 +53,7 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should_not be_builded_by_factory(:simple_model) }
+    it { should_not be_built_by_factory(:simple_model) }
     it { should_not be_created_by_factory(:simple_model) }
   end
 
@@ -66,7 +66,7 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should be_builded_by_factory(:simple_model) }
+    it { should be_built_by_factory(:simple_model) }
     it { should be_created_by_factory(:simple_model) }
   end
 
@@ -79,7 +79,7 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should be_builded_by_factory(:simple_model) }
+    it { should be_built_by_factory(:simple_model) }
     it { should be_created_by_factory(:simple_model) }
   end
 
@@ -94,7 +94,7 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should_not be_builded_by_factory(:simple_model) }
+    it { should_not be_built_by_factory(:simple_model) }
     it { should_not be_created_by_factory(:simple_model) }
   end
 
@@ -110,11 +110,11 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should be_builded_by_factory(:simple_model) }
+    it { should be_built_by_factory(:simple_model) }
     it { should be_created_by_factory(:simple_model) }
   end
 
-  context 'without sequence for uniqu attribute' do
+  context 'without sequence for unique attribute' do
     before(:each) do
       define_model(:simple_model, :name => :string) do
         validates_uniqueness_of :name
@@ -125,23 +125,27 @@ describe 'Factory' do
     end
     subject { SimpleModel }
 
-    it { should_not be_builded_by_factory(:simple_model) }
+    it { should_not be_built_by_factory(:simple_model) }
     it { should_not be_created_by_factory(:simple_model) }
   end
 
-  context 'with sequence for uniqu attribute' do
+  context 'with sequence for unique attribute' do
     before(:each) do
       define_model(:simple_model, :name => :string) do
         validates_uniqueness_of :name
       end
 
+      Factory.sequence :name do |n|
+        "name #{n}"
+      end
+
       Factory.define :simple_model do |model|
-        model.sequence(:name) {|n| "name #{n}" }
+        model.name { Factory.next(:name) }
       end
     end
     subject { SimpleModel }
 
-    it { should be_builded_by_factory(:simple_model) }
+    it { should be_built_by_factory(:simple_model) }
     it { should be_created_by_factory(:simple_model) }
   end
 end

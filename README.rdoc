@@ -1,12 +1,12 @@
 = RSpec - Factory Girl
 
-RSpec matcher collection for testing your model builded with factory girl.
+RSpec matcher collection for testing your model built with factory girl.
 
   describe Post do
-    it { should be_builded_by_factory } # Factory named ':post' is used
+    it { should be_built_by_factory } # Factory named ':post' is used
     it { should be_created_by_factory } # Factory named ':post' is used
 
-    it { should be_builded_by_factory(:my_factory) }
+    it { should be_built_by_factory(:my_factory) }
     it { should be_created_by_factory(:my_factory) }
   end
 
