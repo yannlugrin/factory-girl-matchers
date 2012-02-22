@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'activerecord'
   s.add_development_dependency 'sqlite3'
 
-  s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.rdoc]
+  s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.md]
   s.require_path = 'lib'
 
   s.rdoc_options = ['--charset=UTF-8', '--main=README.rdoc', "--exclude='(lib|test|spec)|(Gem|Guard|Rake)file'"]
