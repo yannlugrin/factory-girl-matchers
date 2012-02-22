@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rspec'
 require 'active_record'
 require 'factory_girl'
-require 'spec/factory_girl'
+require 'factory_girl/matchers'
 
 # Load support files
 Dir[File.expand_path(File.join('..', 'support', '**', '*.rb'), __FILE__)].each { |file| require(file) }
@@ -29,6 +29,6 @@ RSpec.configure do |config|
   end
 
   config.include ModelBuilder
-  config.include Spec::FactoryGirl::Matchers
+  config.include FactoryGirl::Matchers
 end
 
