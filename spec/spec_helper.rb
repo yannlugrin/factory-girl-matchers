@@ -1,11 +1,13 @@
-$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
-$LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
-
-require 'spec'
-require 'activerecord'
+require 'rubygems'
+require 'rspec'
+require 'active_record'
 require 'factory_girl'
+require 'spec/factory_girl'
 
-# Configuration information
+# Load support files
+Dir[File.expand_path(File.join('..', 'support', '**', '*.rb'), __FILE__)].each { |file| require(file) }
+
+# Establish connection to database
 config = {
   :database => {
     :adapter => 'sqlite3',
@@ -14,54 +16,19 @@ config = {
     :timeout => 5000
   }
 }
-
-# Establish connection to database
 ActiveRecord::Base.establish_connection(config[:database])
 
 # Rspec config
-Spec::Runner.configure do |config|
-end
+RSpec.configure do |config|
+  config.filter_run :focus => true
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.run_all_when_everything_filtered = true
 
-# Helpers to create models
-def create_table(table_name, &block)
-  connection = ActiveRecord::Base.connection
-
-  begin
-    connection.execute("DROP TABLE IF EXISTS #{table_name}")
-    connection.create_table(table_name, &block)
-    @created_tables ||= []
-    @created_tables << table_name
-    connection
-  rescue Exception => e
-    connection.execute("DROP TABLE IF EXISTS #{table_name}")
-    raise e
-  end
-end
-
-def define_model_class(class_name, &block)
-  klass = Class.new(ActiveRecord::Base)
-
-  silence_warnings do
-    Object.const_set(class_name, klass)
+  config.before(:each) do
+    FactoryGirl.reload
   end
 
-  klass.class_eval(&block) if block_given?
-
-  @defined_constants ||= []
-  @defined_constants << class_name
-
-  klass
+  config.include ModelBuilder
+  config.include Spec::FactoryGirl::Matchers
 end
 
-def define_model(name, columns = {}, &block)
-  class_name = name.to_s.pluralize.classify
-  table_name = class_name.tableize
-
-  create_table(table_name) do |table|
-    columns.each do |name, type|
-      table.column name, type
-    end
-  end
-
-  define_model_class(class_name, &block)
-end

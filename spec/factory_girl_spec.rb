@@ -1,14 +1,13 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'spec/factory_girl'
+require 'spec_helper'
 
 describe 'Factory' do
-  include Spec::FactoryGirl::Matchers
 
   context 'with default factory name if subject is a class' do
     before(:each) do
       define_model(:simple_model)
 
-      Factory.define :simple_model do |model|
+      FactoryGirl.define do
+        factory :simple_model
       end
     end
     subject { SimpleModel }
@@ -21,7 +20,8 @@ describe 'Factory' do
     before(:each) do
       define_model(:simple_model)
 
-      Factory.define :simple_model do |model|
+      FactoryGirl.define do
+        factory :simple_model
       end
     end
     subject { SimpleModel.new }
@@ -34,7 +34,8 @@ describe 'Factory' do
     before(:each) do
       define_model(:simple_model)
 
-      Factory.define :another_model, :class => SimpleModel do |model|
+      FactoryGirl.define do
+        factory :another_model, :class => SimpleModel
       end
     end
     subject { SimpleModel }
@@ -48,7 +49,8 @@ describe 'Factory' do
       define_model(:simple_model)
       define_model(:another_model)
 
-      Factory.define :simple_model, :class => AnotherModel do |model|
+      FactoryGirl.define do
+        factory :simple_model, :class => AnotherModel
       end
     end
     subject { SimpleModel }
@@ -61,7 +63,8 @@ describe 'Factory' do
     before(:each) do
       define_model(:simple_model)
 
-      Factory.define :simple_model do |model|
+      FactoryGirl.define do
+        factory :simple_model
       end
     end
     subject { SimpleModel }
@@ -74,7 +77,8 @@ describe 'Factory' do
     before(:each) do
       define_model(:simple_model, :name => :string)
 
-      Factory.define :simple_model do |model|
+      FactoryGirl.define do
+        factory :simple_model
       end
     end
     subject { SimpleModel }
@@ -89,7 +93,8 @@ describe 'Factory' do
         validates_presence_of :name
       end
 
-      Factory.define :simple_model do |model|
+      FactoryGirl.define do
+        factory :simple_model
       end
     end
     subject { SimpleModel }
@@ -104,8 +109,10 @@ describe 'Factory' do
         validates_presence_of :name
       end
 
-      Factory.define :simple_model do |model|
-        model.name 'My name'
+      FactoryGirl.define do
+        factory :simple_model do
+          name 'My Name'
+        end
       end
     end
     subject { SimpleModel }
@@ -117,10 +124,13 @@ describe 'Factory' do
   context 'without sequence for unique attribute' do
     before(:each) do
       define_model(:simple_model, :name => :string) do
-        validates_uniqueness_of :name
+        validates :name, :uniqueness => true, :presence => true
       end
 
-      Factory.define :simple_model do |model|
+      FactoryGirl.define do
+        factory :simple_model do
+          name 'My Name'
+        end
       end
     end
     subject { SimpleModel }
@@ -132,15 +142,13 @@ describe 'Factory' do
   context 'with sequence for unique attribute' do
     before(:each) do
       define_model(:simple_model, :name => :string) do
-        validates_uniqueness_of :name
+        validates :name, :uniqueness => true, :presence => true
       end
 
-      Factory.sequence :name do |n|
-        "name #{n}"
-      end
-
-      Factory.define :simple_model do |model|
-        model.name { Factory.next(:name) }
+      FactoryGirl.define do
+        factory :simple_model do
+          sequence(:name) {|n| "My Name #{n}" }
+        end
       end
     end
     subject { SimpleModel }

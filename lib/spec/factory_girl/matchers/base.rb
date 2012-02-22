@@ -1,6 +1,3 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 module Spec
   module FactoryGirl
     module Matchers
@@ -36,7 +33,7 @@ module Spec
 
           # A second record can be created
           begin
-            Factory.create(@factory)
+            ::FactoryGirl.create(@factory)
           rescue ActiveRecord::RecordInvalid => e
             @errors << "model has uniqueness validation, use sequence in factory (#{e.to_s})"
             return false
