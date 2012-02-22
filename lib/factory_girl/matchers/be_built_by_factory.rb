@@ -1,6 +1,14 @@
+require 'factory_girl/matchers/base'
+
 module FactoryGirl
   module Matchers
+
+    def be_built_by_factory(factory = nil)
+      FactoryGirl::Matchers::BeBuiltByFactory.new(factory)
+    end
+
     class BeBuiltByFactory < FactoryGirl::Matchers::Base
+
       def description
         "build instance of '#{@target}' by factory '#{@factory}'"
       end
@@ -19,10 +27,7 @@ module FactoryGirl
       def failure_message_for_should_not
         "expected #{@target.inspect} not to be build by factory '#{@factory}'"
       end
-    end
 
-    def be_built_by_factory(factory = nil)
-      FactoryGirl::Matchers::BeBuiltByFactory.new(factory)
     end
   end
 end

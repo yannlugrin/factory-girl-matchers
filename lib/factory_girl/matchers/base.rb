@@ -1,6 +1,7 @@
 module FactoryGirl
   module Matchers
     class Base
+
       def initialize(factory)
         @factory = factory
         @errors = []
@@ -55,6 +56,7 @@ module FactoryGirl
       def target_class(target)
         target.kind_of?(Class) ? target : target.class
       end
+
     end
   end
 end

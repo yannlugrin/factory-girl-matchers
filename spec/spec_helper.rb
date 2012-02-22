@@ -29,6 +29,5 @@ RSpec.configure do |config|
   end
 
   config.include ModelBuilder
-  config.include FactoryGirl::Matchers
 end
 
