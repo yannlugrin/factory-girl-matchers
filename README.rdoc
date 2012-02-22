@@ -1,5 +1,7 @@
 = RSpec - Factory Girl
 
+{<img src="https://secure.travis-ci.org/yannlugrin/rspec-factory-girl.png?branch=master" alt="Build Status" />}[http://travis-ci.org/yannlugrin/rspec-factory-girl]
+
 RSpec matcher collection for testing your model built with factory girl.
 
   describe Post do
