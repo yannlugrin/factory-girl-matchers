@@ -10,7 +10,7 @@ module FactoryGirl
     class BeCreatedByFactory < FactoryGirl::Matchers::Base
 
       def description
-        "create instance of '#{@target}' by factory '#{@factory}'"
+        "be created by factory '#{@factory}'"
       end
 
       def matches?(target)

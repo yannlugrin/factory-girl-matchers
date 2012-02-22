@@ -10,7 +10,7 @@ module FactoryGirl
     class BeBuiltByFactory < FactoryGirl::Matchers::Base
 
       def description
-        "build instance of '#{@target}' by factory '#{@factory}'"
+        "be build by factory '#{@factory}'"
       end
 
       def matches?(target)
